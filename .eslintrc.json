@@ -1,3 +1,45 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "prettier"],
+  "plugins": ["react", "simple-import-sort"],
+  "rules": {
+    "curly": "warn",
+    "default-case": "warn",
+    "require-await": "error",
+    "import/no-duplicates": "error",
+    "import/no-anonymous-default-export": "off",
+    "react/jsx-sort-props": [
+      2,
+      {
+        "callbacksLast": true,
+        "ignoreCase": true,
+        "noSortAlphabetically": false,
+        "reservedFirst": [/*"className",*/ "children", /*"id",*/ "key", "ref"]
+      }
+    ],
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react", "^@?\\w"],
+          [
+            "^@/layouts/",
+            "^@/components/",
+            "components",
+            "'^\\.(\\.)?/((?!_components)[a-z\\d-]+/)?[a-z\\d-]+(?<!/providers)$',",
+            "^@/assets/"
+          ],
+          [
+            "/providers",
+            "/hooks/",
+            "^@/(?!interfaces)",
+            "^@/interfaces",
+            "\\.(props|interface)\\u0000$"
+          ],
+          ["^public/.+\\.svg\\?url$", "^public/.+\\.png$"],
+          ["^.+\\.s?css$"]
+        ]
+      }
+    ]
+  }
 }
