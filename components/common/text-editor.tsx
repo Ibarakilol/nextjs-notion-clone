@@ -13,7 +13,7 @@ interface TextEditorProps {
   onChange: (value: string) => void;
 }
 
-export const TextEditor = ({ initialContent, isEditable, onChange }: TextEditorProps) => {
+const TextEditor = ({ initialContent, isEditable, onChange }: TextEditorProps) => {
   const { edgestore } = useEdgeStore();
 
   const handleUploadFile = async (file: File) => {
@@ -32,3 +32,5 @@ export const TextEditor = ({ initialContent, isEditable, onChange }: TextEditorP
 
   return <BlockNoteView editor={editor} theme="light" />;
 };
+
+export default TextEditor;
