@@ -24,6 +24,7 @@
           ["^react", "^@?\\w"],
           [
             "^@/layouts/",
+            "^@/pages/((?!/hooks/).)*$",
             "^@/components/",
             "components",
             "'^\\.(\\.)?/((?!_components)[a-z\\d-]+/)?[a-z\\d-]+(?<!/providers)$',",
