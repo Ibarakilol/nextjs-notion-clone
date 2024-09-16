@@ -20,7 +20,7 @@ interface ToolbarProps {
 export const Toolbar = ({ initialData, isPreview }: ToolbarProps) => {
   const inputRef = useRef<ElementRef<'textarea'>>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [value, setValue] = useState(initialData.title);
+  const [value, setValue] = useState<string>(initialData.title);
   const updateDocument = useMutation(api.documents.updateDocument);
   const removeDocumentIcon = useMutation(api.documents.removeDocumentIcon);
   const coverImage = useCoverImage();
@@ -103,7 +103,7 @@ export const Toolbar = ({ initialData, isPreview }: ToolbarProps) => {
       {isEditing && !isPreview ? (
         <TextareaAutosize
           ref={inputRef}
-          className="text-5xl bg-transparent font-bold break-words outline-none text-[#3F3F3F] resize-none"
+          className="text-5xl bg-transparent font-bold break-words outline-none text-[#3F3F3F] resize-none w-full"
           value={value}
           onBlur={disableInput}
           onChange={(e) => handleInputValue(e.target.value)}

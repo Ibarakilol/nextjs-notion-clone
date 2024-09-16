@@ -35,7 +35,7 @@ export const Cover = ({ isPreview, url }: CoverProps) => {
 
   return (
     <div className={cn('relative w-full h-[35vh] group', !url && 'h-[12vh]', url && 'bg-muted')}>
-      {!!url && <Image alt="Cover" className="object-cover" fill src={url} />}
+      {url && <Image alt="Cover" className="object-cover" fill src={url} />}
       {url && !isPreview && (
         <div className="opacity-0 group-hover:opacity-100 absolute bottom-5 right-5 flex items-center gap-x-2">
           <Button
@@ -63,5 +63,5 @@ export const Cover = ({ isPreview, url }: CoverProps) => {
 };
 
 Cover.Skeleton = function CoverSkeleton() {
-  return <Skeleton className="w-4 h-[12vh]" />;
+  return <Skeleton className="w-0 h-[12vh]" />;
 };

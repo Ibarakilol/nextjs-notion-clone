@@ -1,11 +1,12 @@
 'use client';
 
 import { BlockNoteEditor, PartialBlock } from '@blocknote/core';
-import { BlockNoteView, useBlockNote } from '@blocknote/react';
+import { BlockNoteView } from '@blocknote/mantine';
+import { useCreateBlockNote } from '@blocknote/react';
 
 import { useEdgeStore } from '@/providers/edgestore-provider';
 
-import '@blocknote/core/style.css';
+import '@blocknote/mantine/style.css';
 
 interface TextEditorProps {
   initialContent?: string;
@@ -21,16 +22,19 @@ const TextEditor = ({ initialContent, isEditable, onChange }: TextEditorProps) =
     return response.url;
   };
 
-  const editor: BlockNoteEditor = useBlockNote({
-    editable: !!isEditable,
+  const editor: BlockNoteEditor = useCreateBlockNote({
     initialContent: initialContent ? (JSON.parse(initialContent) as PartialBlock[]) : undefined,
-    onEditorContentChange: (editor) => {
-      onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
-    },
     uploadFile: handleUploadFile,
   });
 
-  return <BlockNoteView editor={editor} theme="light" />;
+  return (
+    <BlockNoteView
+      editable={isEditable}
+      editor={editor}
+      theme="light"
+      onChange={() => onChange(JSON.stringify(editor.document, null, 2))}
+    />
+  );
 };
 
 export default TextEditor;

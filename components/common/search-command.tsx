@@ -15,6 +15,7 @@ import {
   CommandList,
 } from '@/components/ui/command';
 
+import { useSearch } from '@/hooks/use-search';
 import { AppRoute, MOCK_USERNAME } from '@/constants';
 import { api } from '@/convex/_generated/api';
 
@@ -23,28 +24,31 @@ export const SearchCommand = () => {
   const router = useRouter();
   const documents = useQuery(api.documents.getSearchDocuments);
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+
+  const toggle = useSearch((store) => store.toggle);
+  const isOpen = useSearch((store) => store.isOpen);
+  const onClose = useSearch((store) => store.onClose);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault();
 
-        setIsSearchOpen((prevState) => !prevState);
+        toggle();
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
 
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [toggle]);
 
   const handleSelectDocument = (id: string) => {
-    setIsSearchOpen(false);
+    onClose();
     router.push(`${AppRoute.DOCUMENTS}/${id}`);
   };
 
@@ -53,7 +57,7 @@ export const SearchCommand = () => {
   }
 
   return (
-    <CommandDialog open={isSearchOpen} onOpenChange={() => setIsSearchOpen(false)}>
+    <CommandDialog open={isOpen} onOpenChange={onClose}>
       <CommandInput placeholder={`Search ${user?.fullName ?? MOCK_USERNAME}'s Notion...`} />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
