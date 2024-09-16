@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { ElementRef, useRef, useState } from 'react';
 import { useMutation } from 'convex/react';
 
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,7 @@ interface TitleProps {
 }
 
 export const Title = ({ initialData }: TitleProps) => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<ElementRef<'input'> | null>(null);
   const updateDocument = useMutation(api.documents.updateDocument);
   const [title, setTitle] = useState<string>(initialData.title || 'Untitled');
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -57,7 +57,12 @@ export const Title = ({ initialData }: TitleProps) => {
           onKeyDown={handleKeyDown}
         />
       ) : (
-        <Button className="font-normal h-auto p-1" size="sm" variant="ghost" onClick={enableInput}>
+        <Button
+          className="font-normal h-auto px-1 py-2"
+          size="sm"
+          variant="ghost"
+          onClick={enableInput}
+        >
           <span className="truncate">{initialData.title}</span>
         </Button>
       )}

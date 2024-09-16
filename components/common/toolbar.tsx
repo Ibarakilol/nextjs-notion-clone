@@ -18,7 +18,7 @@ interface ToolbarProps {
 }
 
 export const Toolbar = ({ initialData, isPreview }: ToolbarProps) => {
-  const inputRef = useRef<ElementRef<'textarea'>>(null);
+  const inputRef = useRef<ElementRef<'textarea'> | null>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [value, setValue] = useState<string>(initialData.title);
   const updateDocument = useMutation(api.documents.updateDocument);

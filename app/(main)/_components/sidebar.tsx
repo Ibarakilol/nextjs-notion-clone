@@ -27,11 +27,11 @@ export const Sidebar = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery('(max-width: 768px)');
   const createDocument = useMutation(api.documents.createDocument);
-  const isResizingRef = useRef(false);
-  const sidebarRef = useRef<ElementRef<'aside'>>(null);
-  const navbarRef = useRef<ElementRef<'div'>>(null);
-  const [isResetting, setIsResetting] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(isMobile);
+  const isResizingRef = useRef<boolean>(false);
+  const sidebarRef = useRef<ElementRef<'aside'> | null>(null);
+  const navbarRef = useRef<ElementRef<'div'> | null>(null);
+  const [isResetting, setIsResetting] = useState<boolean>(false);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(isMobile);
 
   useEffect(() => {
     if (isMobile) {
@@ -132,13 +132,13 @@ export const Sidebar = () => {
       >
         <div
           className={cn(
-            'h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition',
+            'h-5 w-5 text-muted-foreground rounded-sm hover:bg-neutral-300 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition',
             isMobile && 'opacity-100'
           )}
           role="button"
           onClick={collapse}
         >
-          <ChevronsLeft className="h-6 w-6" />
+          <ChevronsLeft className="h-5 w-5 text-muted-foreground" />
         </div>
         <div>
           <Profile />

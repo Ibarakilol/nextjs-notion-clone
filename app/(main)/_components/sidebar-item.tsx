@@ -48,6 +48,7 @@ export const SidebarItem = ({
   const { user } = useUser();
   const router = useRouter();
   const createDocument = useMutation(api.documents.createDocument);
+  const updateDocument = useMutation(api.documents.updateDocument);
   const archiveDocument = useMutation(api.documents.archiveDocument);
 
   const handleArchiveDocument = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -57,7 +58,10 @@ export const SidebarItem = ({
       return;
     }
 
-    const promise = archiveDocument({ id }).then(() => router.push(AppRoute.DOCUMENTS));
+    const promise = Promise.all([
+      updateDocument({ id, isPublished: false }),
+      archiveDocument({ id }),
+    ]);
 
     toast.promise(promise, {
       loading: 'Moving to trash...',
@@ -117,7 +121,9 @@ export const SidebarItem = ({
         </div>
       )}
       {documentIcon ? (
-        <div className="shrink-0 mr-2 text-[18px]">{documentIcon}</div>
+        <div className="flex justify-center items-center shrink-0 mr-2 text-[15px] h-[18px] w-[18px]">
+          {documentIcon}
+        </div>
       ) : (
         <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
       )}

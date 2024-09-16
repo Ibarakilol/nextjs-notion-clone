@@ -1,6 +1,19 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { NextResponse } from 'next/server';
 
-export default clerkMiddleware();
+import { AppRoute } from '@/constants';
+
+const isProtectedRoute = createRouteMatcher([`${AppRoute.DOCUMENTS}(.*)`]);
+
+export default clerkMiddleware((auth, req) => {
+  if (auth().userId && req.nextUrl.pathname === AppRoute.ROOT) {
+    return NextResponse.redirect(new URL(AppRoute.DOCUMENTS, req.nextUrl));
+  }
+
+  if (isProtectedRoute(req)) {
+    auth().protect();
+  }
+});
 
 export const config = {
   matcher: [

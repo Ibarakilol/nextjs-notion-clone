@@ -3,7 +3,6 @@
 import { useUser } from '@clerk/clerk-react';
 import { useMutation } from 'convex/react';
 import { MoreHorizontal, Trash } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -16,7 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Skeleton } from '@/components/ui/skeleton';
 
-import { AppRoute, MOCK_USERNAME } from '@/constants';
+import { MOCK_USERNAME } from '@/constants';
 import { api } from '@/convex/_generated/api';
 import { Id } from '@/convex/_generated/dataModel';
 
@@ -25,13 +24,16 @@ interface MenuProps {
 }
 
 export const Menu = ({ documentId }: MenuProps) => {
-  const router = useRouter();
   const { user } = useUser();
 
+  const updateDocument = useMutation(api.documents.updateDocument);
   const archiveDocument = useMutation(api.documents.archiveDocument);
 
   const handleArchiveDocument = () => {
-    const promise = archiveDocument({ id: documentId }).then(() => router.push(AppRoute.DOCUMENTS));
+    const promise = Promise.all([
+      updateDocument({ id: documentId, isPublished: false }),
+      archiveDocument({ id: documentId }),
+    ]);
 
     toast.promise(promise, {
       loading: 'Moving to trash...',

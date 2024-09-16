@@ -29,7 +29,7 @@ const TextEditor = ({ initialContent, isEditable, onChange }: TextEditorProps) =
 
   return (
     <BlockNoteView
-      editable={isEditable}
+      editable={!!isEditable}
       editor={editor}
       theme="light"
       onChange={() => onChange(JSON.stringify(editor.document, null, 2))}

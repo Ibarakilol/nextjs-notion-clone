@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 import { useOrigin } from '@/hooks/use-origin';
+import { AppRoute } from '@/constants';
 import { api } from '@/convex/_generated/api';
 import { Doc } from '@/convex/_generated/dataModel';
 
@@ -22,7 +23,7 @@ export const Publish = ({ initialData }: PublishProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const url = `${origin}/preview/${initialData._id}`;
+  const url = `${origin}${AppRoute.PREVIEW}/${initialData._id}`;
 
   const handlePublishDocument = () => {
     setIsSubmitting(true);
@@ -64,7 +65,7 @@ export const Publish = ({ initialData }: PublishProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button size="sm" variant="ghost">
+        <Button size="sm">
           {initialData.isPublished ? 'Unpublish' : 'Publish'}
           {initialData.isPublished && <Globe className="text-sky-500 w-4 h-4 ml-2" />}
         </Button>

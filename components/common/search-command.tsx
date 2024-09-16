@@ -23,15 +23,10 @@ export const SearchCommand = () => {
   const { user } = useUser();
   const router = useRouter();
   const documents = useQuery(api.documents.getSearchDocuments);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   const toggle = useSearch((store) => store.toggle);
   const isOpen = useSearch((store) => store.isOpen);
   const onClose = useSearch((store) => store.onClose);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -52,10 +47,6 @@ export const SearchCommand = () => {
     router.push(`${AppRoute.DOCUMENTS}/${id}`);
   };
 
-  if (!isMounted) {
-    return null;
-  }
-
   return (
     <CommandDialog open={isOpen} onOpenChange={onClose}>
       <CommandInput placeholder={`Search ${user?.fullName ?? MOCK_USERNAME}'s Notion...`} />
@@ -66,11 +57,11 @@ export const SearchCommand = () => {
             <CommandItem
               key={document._id}
               title={document.title}
-              value={`${document._id}-${document.title}`}
+              value={document._id}
               onSelect={handleSelectDocument}
             >
               {document.icon ? (
-                <p className="mr-2 text-[18px]">{document.icon}</p>
+                <div className="mr-2 text-[16px] h-5 w-5">{document.icon}</div>
               ) : (
                 <File className="mr-2 h-4 w-4" />
               )}

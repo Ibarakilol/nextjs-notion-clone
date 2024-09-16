@@ -44,7 +44,7 @@ export const Cover = ({ isPreview, url }: CoverProps) => {
             variant="outline"
             onClick={() => coverImage.onReplace(url)}
           >
-            <ImageIcon className="h-4 2-4 mr-2" />
+            <ImageIcon className="h-4 w-4 mr-2" />
             Change cover
           </Button>
           <Button
@@ -53,7 +53,7 @@ export const Cover = ({ isPreview, url }: CoverProps) => {
             variant="outline"
             onClick={handleRemoveCover}
           >
-            <X className="h-4 2-4 mr-2" />
+            <X className="h-4 w-4 mr-2" />
             Remove
           </Button>
         </div>
