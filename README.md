@@ -54,7 +54,7 @@ npm run dev
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
-- [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
+- [Zustand](https://zustand-demo.pmnd.rs/)
 - [Convex](https://convex.dev/)
 - [Clerk Auth](https://clerk.com/)
 - [Edge Store](https://edgestore.dev/)
