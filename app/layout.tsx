@@ -3,10 +3,9 @@ import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import { Toaster } from 'sonner';
 
-import { CoverImageModal } from '@/components/modals/cover-image-modal';
-
 import { ConvexClientProvider } from '@/providers/convex-client-provider';
 import { EdgeStoreProvider } from '@/providers/edgestore-provider';
+import { ModalProvider } from '@/providers/modal-provider';
 import { cn } from '@/lib/utils';
 
 import './globals.css';
@@ -30,11 +29,11 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
         <ConvexClientProvider>
           <EdgeStoreProvider>
-            <CoverImageModal />
             {children}
+            <ModalProvider />
+            <Toaster position="bottom-center" />
           </EdgeStoreProvider>
         </ConvexClientProvider>
-        <Toaster position="bottom-center" />
       </body>
     </html>
   );
