@@ -63,7 +63,7 @@ export const DocumentList = ({ level = 0, parentDocumentId }: DocumentListProps)
       >
         No pages inside
       </p>
-      {documents.map((document) => (
+      {documents?.map((document) => (
         <div key={document._id}>
           <SidebarItem
             active={params.documentId === document._id}
