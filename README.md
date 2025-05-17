@@ -1,27 +1,27 @@
 # Next.js Notion Clone
 
-A Notion Clone web application built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, Zustand, Convex, Clerk Auth and Edge Store.
+Клон Notion, созданный с использованием Next.js
 
-## Running the project
+![Next.js Notion Clone](public/demo.png)
 
-These instructions will help you set up and run the project on your local machine for development and testing purposes.
+## Dev стак
 
-1. **Clone the repository:**
+Next.js, TypeScript, Tailwind CSS, shadcn/ui, Zustand, Convex, Clerk Auth, Edge Store
+
+## Запуск проекта
+
+Инструкция по настройке и запуску проекта на локальном компьютере.
+
+1. **Клонирование репозитория:**
 
 ```bash
 git clone https://github.com/Ibarakilol/nextjs-notion-clone.git
 cd nextjs-notion-clone
 ```
 
-2. **Install the required dependencies:**
+2. **Настройка переменных среды:**
 
-```bash
-npm i
-```
-
-3. **Configure environment variables:**
-
-Create a `.env.local` file in the project root and set the necessary environment variables.
+Создайте файл .env.local в корневом каталоге проекта и задайте необходимые переменные среды.
 
 ```
 CONVEX_DEPLOYMENT=
@@ -34,27 +34,12 @@ EDGE_STORE_ACCESS_KEY=
 EDGE_STORE_SECRET_KEY=
 ```
 
-On your Convex Dashboard go to your development project's Settings tab and add to Environment Variables a key `CLERK_AUTH_URL` with Clerk auth url.
+На панели управления Convex перейдите на вкладку Settings вашего проекта и добавьте в Environment Variables ключ `CLERK_AUTH_URL` с URL-адресом Clerk auth.
 
-4. **Run convex development server:**
-
-```bash
-npx convex dev
-```
-
-5. **On second terminal run the development server:**
+3. **Установка зависимостей и запуск:**
 
 ```bash
-npm run dev
+npm i
 ```
 
-## Built with
-
-- [Next.js](https://nextjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [shadcn/ui](https://ui.shadcn.com/)
-- [Zustand](https://zustand-demo.pmnd.rs/)
-- [Convex](https://convex.dev/)
-- [Clerk Auth](https://clerk.com/)
-- [Edge Store](https://edgestore.dev/)
+После этого, в первом терминале запустите сам проект `npm run dev`, а во втором сервер Convex `npx convex dev`
