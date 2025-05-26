@@ -5,12 +5,12 @@ import { useQuery } from 'convex/react';
 import { FileIcon } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 
+import { SidebarItem } from './sidebar-item';
+
 import { AppRoute } from '@/constants';
 import { api } from '@/convex/_generated/api';
 import { Id } from '@/convex/_generated/dataModel';
 import { cn } from '@/lib/utils';
-
-import { SidebarItem } from './sidebar-item';
 
 interface DocumentListProps {
   level?: number;

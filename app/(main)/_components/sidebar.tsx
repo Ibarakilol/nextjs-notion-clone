@@ -8,17 +8,16 @@ import { toast } from 'sonner';
 import { useMediaQuery } from 'usehooks-ts';
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-
-import { useSearch } from '@/hooks/use-search';
-import { AppRoute } from '@/constants';
-import { api } from '@/convex/_generated/api';
-import { cn } from '@/lib/utils';
-
 import { DocumentList } from './document-list';
 import { Navbar } from './navbar';
 import { Profile } from './profile';
 import { SidebarItem } from './sidebar-item';
 import { TrashBox } from './trash-box';
+
+import { useSearch } from '@/hooks/use-search';
+import { AppRoute } from '@/constants';
+import { api } from '@/convex/_generated/api';
+import { cn } from '@/lib/utils';
 
 export const Sidebar = () => {
   const router = useRouter();
