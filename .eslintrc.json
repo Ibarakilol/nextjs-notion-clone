@@ -27,7 +27,7 @@
             "^@/pages/((?!/hooks/).)*$",
             "^@/components/",
             "components",
-            "'^\\.(\\.)?/((?!_components)[a-z\\d-]+/)?[a-z\\d-]+(?<!/providers)$',",
+            "^\\.(\\.)?/((?!_components)[a-z\\d-]+/)?[a-z\\d-]+(?<!/providers)$",
             "^@/assets/"
           ],
           [
